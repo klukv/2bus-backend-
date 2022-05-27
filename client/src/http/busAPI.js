@@ -12,6 +12,17 @@ export const fetchBus = async () => {
 }
 
 export const fetchOneBus = async (id) => {
-	const { data } = await $host.get('api/mainWindow/' + id)
+	const { data } = await $host.get('api/bus/' + id)
 	return data
 }
+
+export const createModel = async (model) => {
+	const { data } = await $host.post('api/model', model)
+	return data
+}
+
+export const fetchModel = async () => {
+	const { data } = await $host.get('api/model')
+	return data
+}
+

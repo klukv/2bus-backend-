@@ -4,8 +4,8 @@ const ApiError = require('../errors/ApiError')
 class busController {
 	async create(req, res, next) {
 		try {
-			let { number, route, modelId, driverInfo } = req.body
-			const bus = await Bus.create({ number, route, modelId })
+			let { number, route, rating, modelId, driverInfo } = req.body
+			const bus = await Bus.create({ number, route, rating, modelId })
 
 			if (driverInfo) {
 				driverInfo = JSON.parse(driverInfo)

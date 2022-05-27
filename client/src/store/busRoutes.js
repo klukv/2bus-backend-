@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx"
 
-export default class busRoutes {
+export default class BusRoutes {
 	constructor() {
 		this._buses = []
-
+		this._models = []
 		makeAutoObservable(this)
+	}
+	setModel(models) {
+		this._models = models
 	}
 
 	setBuses(buses) {
 		this._buses = buses
 	}
 
-	setBus(bus) {
-		this._buses = buses
-	}
 	setDriver(driver) {
 		this._drivers = driver
 	}
@@ -23,5 +23,8 @@ export default class busRoutes {
 	}
 	get Driver() {
 		return this._drivers
+	}
+	get Models() {
+		return this._models
 	}
 }

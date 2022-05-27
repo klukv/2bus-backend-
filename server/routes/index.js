@@ -6,7 +6,7 @@ const busRouter = require('./busRoute')
 const modelBusRouter = require('./modelBusRoute')
 
 router.use('/user', userRouter)
-router.use('/mainWindow', busRouter)
+router.use('/BUS', busRouter)
 router.use('/model', modelBusRouter)
 
 module.exports = router

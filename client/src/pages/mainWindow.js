@@ -7,29 +7,20 @@ import '../scss/mainWindow.scss';
 import { observer } from 'mobx-react-lite'
 import { Context } from '..'
 import Menu from '../menu/menu'
-import { setBus } from '../store/busRoutes'
-import { fetchBus } from '../http/busAPI'
+import { fetchBus } from '../http/busAPI';
 
 
 const MainWindow = observer(() => {
 	const { bus } = useContext(Context)
 	const [menuActive, setMenuActive] = useState(false)
-
 	useEffect(() => {
 		fetchBus().then(data => bus.setBuses(data))
 	}, [])
-
-	// const items = [
-	// 	{ value: 'Студентческий городок ВПИ', href: '#', key: 'city' },
-	// 	{ value: 'Политехнический институт', href: '#', key: 'politech' },
-	// 	{ value: 'Гостиница БРНО', href: '#', key: 'hotel' },
-	// 	{ value: 'Строительный институт', href: '#', key: 'Stroika' }]
-
-
 	return (
 		<div className='mainWindow'>
 			<main>
 				<div className="wrapper">
+					<div className={menuActive ? 'wrapper__block-black active' : 'wrapper__block-black'}></div>
 					<div className="wrapper__content">
 						<div className="wrapper__auth">
 							<img src={person} alt="person" />
