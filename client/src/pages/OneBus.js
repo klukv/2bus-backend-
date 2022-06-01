@@ -6,7 +6,7 @@ import { fetchOneBus } from '../http/busAPI'
 import { Context } from '../index'
 
 const OneBus = () => {
-	const [bus, setBus] = useState({ info: [] })
+	const [bus, setBus] = useState({ driverInfo: [] })
 	const { id } = useParams()
 	useEffect(() => {
 		fetchOneBus(id).then(data => setBus(data))
@@ -33,27 +33,25 @@ const OneBus = () => {
 							</tr>
 						</tbody>
 					</table>
-					{bus.driverInfo.map((driverInfo, index) =>
-						<div>
-							<div className="bus__title">Водитель</div>
-							<table key={driverInfo.id} className="bus__table">
-								<thead className="bus__thead">
-									<tr>
-										<td>Имя</td>
-										<td>Фамилия</td>
-										<td>Телефон</td>
-									</tr>
-								</thead>
-								<tbody className="bus__tbody">
-									<tr>
-										<td>{driverInfo.name}</td>
-										<td>{driverInfo.firstname}</td>
-										<td>{driverInfo.phone}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					)}
+					<div className="bus__title">Водитель</div>
+					<table className="bus__table">
+						<thead className="bus__thead">
+							<tr>
+								<td>Имя</td>
+								<td>Фамилия</td>
+								<td>Телефон</td>
+							</tr>
+						</thead>
+						<tbody className="bus__tbody">
+							{bus.driverInfo.map(driver =>
+								<tr>
+									<td>{driver.name}</td>
+									<td>{driver.firstname}</td>
+									<td>{driver.phone}</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
 				</div>
 				<div className="bus__map">
 					<img src={map} alt="" />
