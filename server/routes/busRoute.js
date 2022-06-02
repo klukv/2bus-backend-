@@ -5,5 +5,6 @@ const busController = require('../controllers/busController')
 router.post('/', busController.create)
 router.get('/', busController.getAll)
 router.get('/:id', busController.getBus)
+router.get('/findByNumber/:number', busController.getBusNumber)
 
 module.exports = router

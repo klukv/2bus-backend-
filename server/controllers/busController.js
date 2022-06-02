@@ -1,11 +1,17 @@
-const { Bus, Driver } = require('../models/models')
+const { Bus, Driver, Model } = require('../models/models')
 const ApiError = require('../errors/ApiError')
+const uuid = require('uuid')
+const path = require('path')
 
 class busController {
 	async create(req, res, next) {
 		try {
 			let { number, route, rating, modelId, driverInfo } = req.body
-			const bus = await Bus.create({ number, route, rating, modelId })
+			const { img } = req.files
+			let filename = uuid.v4() + '.jpg'
+			img.mv(path.resolve(__dirname, '..', 'static', filename))
+
+			const bus = await Bus.create({ number, route, rating, modelId, img: filename })
 
 			if (driverInfo) {
 				driverInfo = JSON.parse(driverInfo)
@@ -13,8 +19,7 @@ class busController {
 					Driver.create({
 						name: i.name,
 						firstname: i.firstname,
-						phone: i.phone,
-						driverId: Bus.id
+						phone: i.phone
 					})
 				)
 			}
@@ -32,6 +37,18 @@ class busController {
 				where: { id },
 				include: [{ model: Driver, as: 'driverInfo' }]
 			},
+
+		)
+		return res.json(bus)
+	}
+
+	async getBusNumber(req, res) {
+		const { number } = req.params
+		const bus = await Bus.findOne(
+			{
+				where: { number },
+			},
+
 		)
 		return res.json(bus)
 	}

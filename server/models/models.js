@@ -23,7 +23,8 @@ const Bus = sequelize.define('bus', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 	number: { type: DataTypes.INTEGER, unique: true, allowNull: false },
 	route: { type: DataTypes.INTEGER, unique: true },
-	rating: { type: DataTypes.INTEGER, defaultValue: 0 }
+	rating: { type: DataTypes.INTEGER, defaultValue: 0 },
+	img: { type: DataTypes.STRING, allowNull: false },
 }
 )
 

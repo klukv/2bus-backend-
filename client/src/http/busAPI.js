@@ -16,6 +16,11 @@ export const fetchOneBus = async (id) => {
 	return data
 }
 
+export const fetchBusNumber = async (number) => {
+	const { data } = await $host.get('api/bus/findByNumber/' + number)
+	return data
+}
+
 export const createModel = async (model) => {
 	const { data } = await $host.post('api/model', model)
 	return data
@@ -23,6 +28,11 @@ export const createModel = async (model) => {
 
 export const fetchModel = async () => {
 	const { data } = await $host.get('api/model')
+	return data
+}
+
+export const fetchOneModel = async (id) => {
+	const { data } = await $host.get('api/model/' + id)
 	return data
 }
 

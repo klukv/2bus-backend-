@@ -2,16 +2,24 @@ import React, { useContext, useEffect, useState } from 'react'
 import map from '../assets/img/map.jpg'
 import '../scss/bus.scss'
 import { useParams } from 'react-router-dom'
-import { fetchOneBus } from '../http/busAPI'
+import { fetchBus, fetchOneBus, fetchOneModel } from '../http/busAPI'
 import { Context } from '../index'
+import { observer } from 'mobx-react-lite'
 
-const OneBus = () => {
+const OneBus = observer(() => {
 	const [bus, setBus] = useState({ driverInfo: [] })
+	const [model, setModel] = useState({})
 	const { id } = useParams()
+
 	useEffect(() => {
-		fetchOneBus(id).then(data => setBus(data))
+		const fetchInfo = async () => {
+			const data = await fetchOneBus(id)
+			setBus(data)
+			const model = await fetchOneModel(data.modelId)
+			setModel(model)
+		}
+		fetchInfo()
 	}, [])
-	// const bus = { number: 49, route: 0, rating: 0, driverInfo: [{ id: 1, name: "Пётр", firstname: "Пирожков", phone: 777 }] }
 	return (
 		<section className="bus">
 			<div className="bus__inner">
@@ -44,7 +52,7 @@ const OneBus = () => {
 						</thead>
 						<tbody className="bus__tbody">
 							{bus.driverInfo.map(driver =>
-								<tr>
+								<tr key={`${driver.id}_${driver.name}`}>
 									<td>{driver.name}</td>
 									<td>{driver.firstname}</td>
 									<td>{driver.phone}</td>
@@ -52,13 +60,28 @@ const OneBus = () => {
 							)}
 						</tbody>
 					</table>
+					<table className="bus__table">
+						<thead className="bus__thead">
+							<tr>
+								<td>Модель</td>
+								<td>Год</td>
+							</tr>
+						</thead>
+						<tbody className="bus__tbody">
+
+							<tr>
+								<td >{model.model}</td>
+								<td>{model.year}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div className="bus__map">
-					<img src={map} alt="" />
+					<img src={process.env.REACT_APP_API_URL + bus.img} alt="" />
 				</div>
 			</div>
 		</section>
 	)
-}
+})
 
 export default OneBus

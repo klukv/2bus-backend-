@@ -5,14 +5,31 @@ import '../scss/menu.scss'
 import { Context } from '../index'
 import { observer } from 'mobx-react-lite'
 import ButtonComponent from '../components/buttonComponent'
+import { fetchBusNumber, fetchOneBus } from '../http/busAPI'
+import { useNavigate } from 'react-router-dom';
+import { BUS_ROUTE } from '../utils/const'
 
 const Menu = observer(({ header, active, setActive }) => {
 	const { bus } = useContext(Context)
-
+	const [search, setSearch] = useState('')
 	const studentCity = [49, 80, 33, 75, 313]
 	const hostel = [49, 64]
 	const politech = [49, 80, 64]
 	const stroika = [49]
+	const navigate = useNavigate()
+
+	const findNumber = async (event) => {
+
+		try {
+			if (search) {
+				const data = await fetchBusNumber(search)
+				navigate(BUS_ROUTE + '/' + data.id)
+			}
+		} catch (error) {
+			alert('Конченный')
+		}
+	}
+
 
 	return (
 		<div className={active ? 'wrapper__menu active' : 'wrapper__menu'}>
@@ -21,9 +38,10 @@ const Menu = observer(({ header, active, setActive }) => {
 					<div className="wrapper__menu-logo">
 						<img src={busLogo} alt="logo" />
 					</div>
-					<form className="wrapper__menu-form">
-						<input type="text" name="" id="" placeholder='Поиск' />
-					</form>
+					<div className="wrapper__menu-form">
+						<input type="text" name="" placeholder="Поиск" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={(e) => { if (e.code === 'Enter') { findNumber(e) } }} />
+						<button className="button__div" onClick={() => findNumber()}>Поиск</button>
+					</div>
 				</div>
 				<div className="wrapper__menu-content">
 					<div className="wrapper__menu-header">

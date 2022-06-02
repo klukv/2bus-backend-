@@ -14,12 +14,20 @@ class modelBusController {
 
 	}
 
-	async getBus(req, res) {
+	async getModel(req, res) {
+		const { id } = req.params
+		const model = await Model.findOne(
+			{
+				where: { id },
+			},
 
+		)
+		return res.json(model)
 	}
 
 	async getAll(req, res) {
-
+		let model = await Model.findAll({})
+		return res.json(model)
 	}
 
 }
