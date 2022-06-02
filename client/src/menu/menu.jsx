@@ -12,10 +12,10 @@ import { BUS_ROUTE } from '../utils/const'
 const Menu = observer(({ header, active, setActive }) => {
 	const { bus } = useContext(Context)
 	const [search, setSearch] = useState('')
-	const studentCity = [49, 80, 33, 75, 313]
-	const hostel = [49, 64]
+	const studentCity = [49, 80, 33]
+	const hostel = [49, 64, 366]
 	const politech = [49, 80, 64]
-	const stroika = [49]
+	const stroika = [49, 26]
 	const navigate = useNavigate()
 
 	const findNumber = async (event) => {

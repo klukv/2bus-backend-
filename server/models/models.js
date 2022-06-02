@@ -14,7 +14,7 @@ const Driver = sequelize.define('driver', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 	name: { type: DataTypes.STRING },
 	firstname: { type: DataTypes.STRING },
-	phone: { type: DataTypes.INTEGER, unique: true },
+	phone: { type: DataTypes.STRING, unique: true },
 
 }
 )
@@ -24,7 +24,7 @@ const Bus = sequelize.define('bus', {
 	number: { type: DataTypes.INTEGER, unique: true, allowNull: false },
 	route: { type: DataTypes.INTEGER, unique: true },
 	rating: { type: DataTypes.INTEGER, defaultValue: 0 },
-	img: { type: DataTypes.STRING, allowNull: false },
+	img: { type: DataTypes.STRING },
 }
 )
 
@@ -49,8 +49,8 @@ ratingUser.belongsTo(Bus)
 Model.hasMany(Bus)
 Bus.belongsTo(Model)
 
-Bus.hasMany(Driver, { as: 'driverInfo' })
-Driver.belongsTo(Bus)
+Driver.hasMany(Bus)
+Bus.belongsTo(Driver)
 
 module.exports = {
 	User,

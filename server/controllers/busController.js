@@ -3,26 +3,28 @@ const ApiError = require('../errors/ApiError')
 const uuid = require('uuid')
 const path = require('path')
 
+
 class busController {
 	async create(req, res, next) {
 		try {
-			let { number, route, rating, modelId, driverInfo } = req.body
+			let { number, route, rating, modelId, driverId } = req.body
 			const { img } = req.files
 			let filename = uuid.v4() + '.jpg'
 			img.mv(path.resolve(__dirname, '..', 'static', filename))
 
-			const bus = await Bus.create({ number, route, rating, modelId, img: filename })
+			const bus = await Bus.create({ number, route, rating, modelId, driverId, img: filename })
 
-			if (driverInfo) {
-				driverInfo = JSON.parse(driverInfo)
-				driverInfo.forEach(i =>
-					Driver.create({
-						name: i.name,
-						firstname: i.firstname,
-						phone: i.phone
-					})
-				)
-			}
+			// if (driverInfo) {
+			// 	driverInfo = JSON.parse(driverInfo)
+			// 	driverInfo.forEach(i =>
+			// 		Driver.create({
+			// 			name: i.name,
+			// 			firstname: i.firstname,
+			// 			phone: i.phone,
+			// 			busId: bus.id
+			// 		})
+			// 	)
+			// }
 			return res.json(bus)
 		} catch (e) {
 			next(ApiError.badRequest(e.message))
@@ -35,11 +37,21 @@ class busController {
 		const bus = await Bus.findOne(
 			{
 				where: { id },
-				include: [{ model: Driver, as: 'driverInfo' }]
 			},
 
 		)
 		return res.json(bus)
+	}
+
+	async deleteBus(req, res) {
+
+		const { number } = req.params
+		const bus = await Bus.destroy({
+			where: { number },
+		})
+
+		return res.json(bus)
+
 	}
 
 	async getBusNumber(req, res) {

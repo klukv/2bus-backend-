@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import arrow from '../assets/img/arrowLeft.svg'
+import arrowInverse from '../assets/img/arrowInverse.svg'
 import person from '../assets/img/person.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LOGIN_ROUTES } from '../utils/const';
+import { CREATE_BUS, LOGIN_ROUTES } from '../utils/const';
 import '../scss/mainWindow.scss';
 import { observer } from 'mobx-react-lite'
 import { Context } from '..'
@@ -27,8 +28,12 @@ const MainWindow = observer(() => {
 							<NavLink to={LOGIN_ROUTES}>Вход</NavLink>
 							{/* <button>Выйти</button>  */}
 						</div>
+						<div className="wrapper__create">
+							<NavLink to={CREATE_BUS}>Создать/Удалить автобус</NavLink>
+							{/* <button>Выйти</button>  */}
+						</div>
 						<div className={menuActive ? 'wrapper__btn active' : 'wrapper__btn'} onClick={() => setMenuActive(!menuActive)}>
-							<img src={arrow} alt="arrow" />
+							<img src={!menuActive ? arrowInverse : arrow} alt="arrow" />
 						</div>
 					</div>
 				</div>

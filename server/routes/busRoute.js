@@ -6,5 +6,6 @@ router.post('/', busController.create)
 router.get('/', busController.getAll)
 router.get('/:id', busController.getBus)
 router.get('/findByNumber/:number', busController.getBusNumber)
+router.delete('/findByNumber/:number', busController.deleteBus)
 
 module.exports = router

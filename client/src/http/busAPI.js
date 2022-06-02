@@ -21,6 +21,11 @@ export const fetchBusNumber = async (number) => {
 	return data
 }
 
+export const deleteBusNumber = async (number) => {
+	const { data } = await $host.delete('api/bus/findByNumber/' + number)
+	return data
+}
+
 export const createModel = async (model) => {
 	const { data } = await $host.post('api/model', model)
 	return data
@@ -33,6 +38,11 @@ export const fetchModel = async () => {
 
 export const fetchOneModel = async (id) => {
 	const { data } = await $host.get('api/model/' + id)
+	return data
+}
+
+export const fetchOneDriver = async (id) => {
+	const { data } = await $host.get('api/driver/' + id)
 	return data
 }
 

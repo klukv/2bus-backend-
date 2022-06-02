@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
-import map from '../assets/img/map.jpg'
 import '../scss/bus.scss'
 import { useParams } from 'react-router-dom'
-import { fetchBus, fetchOneBus, fetchOneModel } from '../http/busAPI'
+import { fetchBus, fetchOneBus, fetchOneDriver, fetchOneModel } from '../http/busAPI'
 import { Context } from '../index'
 import { observer } from 'mobx-react-lite'
 
 const OneBus = observer(() => {
-	const [bus, setBus] = useState({ driverInfo: [] })
+	const [bus, setBus] = useState({})
 	const [model, setModel] = useState({})
+	const [driver, setDriver] = useState({})
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -17,6 +17,8 @@ const OneBus = observer(() => {
 			setBus(data)
 			const model = await fetchOneModel(data.modelId)
 			setModel(model)
+			const driver = await fetchOneDriver(data.driverId)
+			setDriver(driver)
 		}
 		fetchInfo()
 	}, [])
@@ -41,25 +43,7 @@ const OneBus = observer(() => {
 							</tr>
 						</tbody>
 					</table>
-					<div className="bus__title">Водитель</div>
-					<table className="bus__table">
-						<thead className="bus__thead">
-							<tr>
-								<td>Имя</td>
-								<td>Фамилия</td>
-								<td>Телефон</td>
-							</tr>
-						</thead>
-						<tbody className="bus__tbody">
-							{bus.driverInfo.map(driver =>
-								<tr key={`${driver.id}_${driver.name}`}>
-									<td>{driver.name}</td>
-									<td>{driver.firstname}</td>
-									<td>{driver.phone}</td>
-								</tr>
-							)}
-						</tbody>
-					</table>
+					<div className="bus__title">Характеристики автобуса</div>
 					<table className="bus__table">
 						<thead className="bus__thead">
 							<tr>
@@ -72,6 +56,23 @@ const OneBus = observer(() => {
 							<tr>
 								<td >{model.model}</td>
 								<td>{model.year}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div className="bus__title">Водитель</div>
+					<table className="bus__table">
+						<thead className="bus__thead">
+							<tr>
+								<td>Имя</td>
+								<td>Фамилия</td>
+								<td>Телефон</td>
+							</tr>
+						</thead>
+						<tbody className="bus__tbody">
+							<tr>
+								<td>{driver.name}</td>
+								<td>{driver.firstname}</td>
+								<td>{driver.phone}</td>
 							</tr>
 						</tbody>
 					</table>

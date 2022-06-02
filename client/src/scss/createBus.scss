@@ -1,0 +1,52 @@
+.admin__inner {
+	margin: 50px auto;
+	display: flex;
+	justify-content: space-around;
+
+	input[type="text"] {
+		display: block;
+		margin: 5px auto;
+		width: 330px;
+		height: 44px;
+		border: 1px solid #e5e0eb;
+		border-radius: 2px;
+		background: #ffffff;
+		outline: none;
+	}
+
+	.btn {
+		margin-bottom: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 30px;
+		width: 250px;
+		height: 20px;
+		color: #fff;
+		font-size: 24px;
+		background-color: #9d3fe7;
+		border-radius: 12px;
+	}
+	.admin__create_block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-right: 15px;
+		input[type="file"] {
+			display: block;
+			margin: 0 auto;
+			width: 330px;
+			height: 44px;
+			border: 1px solid #e5e0eb;
+			border-radius: 2px;
+			background: #ffffff;
+			outline: none;
+		}
+	}
+	.admin__delete_block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
