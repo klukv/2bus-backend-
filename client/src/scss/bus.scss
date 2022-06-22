@@ -47,9 +47,10 @@ body {
 		}
 	}
 	&__map {
-		img {
-			width: 100%;
-		}
+		margin: 0;
+		width: 100%;
+		height: 1080px;
+		overflow: hidden;
 	}
 }
 

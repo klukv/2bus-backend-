@@ -45,6 +45,15 @@ class userController {
 		const token = generateJWT(req.user.id, req.user.email)
 		return res.json({ token })
 	}
+	async checkName(req, res, next) {
+		const { email } = req.params
+		const data = await User.findOne(
+			{
+				where: { email },
+			}
+		)
+		return res.json(data)
+	}
 }
 
 module.exports = new userController()

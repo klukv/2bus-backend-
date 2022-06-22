@@ -26,7 +26,7 @@ const Menu = observer(({ header, active, setActive }) => {
 				navigate(BUS_ROUTE + '/' + data.id)
 			}
 		} catch (error) {
-			alert('Конченный')
+			alert('Данный маршрут не найден')
 		}
 	}
 

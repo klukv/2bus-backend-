@@ -12,6 +12,7 @@ import { fetchBus } from '../http/busAPI';
 
 
 const MainWindow = observer(() => {
+	let userLocal = JSON.parse(localStorage.getItem('infoUser'))
 	const { bus } = useContext(Context)
 	const [menuActive, setMenuActive] = useState(false)
 	useEffect(() => {
@@ -25,7 +26,7 @@ const MainWindow = observer(() => {
 					<div className="wrapper__content">
 						<div className="wrapper__auth">
 							<img src={person} alt="person" />
-							<NavLink to={LOGIN_ROUTES}>Вход</NavLink>
+							<NavLink to={LOGIN_ROUTES}>{userLocal.name}</NavLink>
 							{/* <button>Выйти</button>  */}
 						</div>
 						<div className="wrapper__create">

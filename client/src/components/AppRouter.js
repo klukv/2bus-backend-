@@ -8,10 +8,11 @@ import { authRoutes, publicRoutes } from '../routes'
 const AppRouter = () => {
 	const { user } = useContext(Context)
 	const { route } = useContext(Context)
+	console.log(user._isAuth)
 	return (
 
 		<Routes>
-			{authRoutes.map(({ path, Component }) =>
+			{user._isAuth && authRoutes.map(({ path, Component }) =>
 				<Route key={path} path={path} element={<Component />} />
 			)}
 

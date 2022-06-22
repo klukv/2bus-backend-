@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTES, MAIN_WINDOW, REGISTRATION_ROUTES } from '../utils/const'
 import '../scss/login.scss'
-import { login } from '../http/userAPI';
+import { getName, login } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 
@@ -21,6 +21,8 @@ const Login = observer(() => {
 			data = await login(email, password)
 			user.setUser(user)
 			user.setIsAuth(true)
+			let info = await getName(email)
+			localStorage.setItem('infoUser', JSON.stringify(info))
 			navigate(MAIN_WINDOW)
 		} catch (e) {
 			alert(e.response.data.message)
@@ -64,6 +66,7 @@ const Login = observer(() => {
 				</form>
 			</div>
 		</section>
+
 	);
 })
 export default Login;

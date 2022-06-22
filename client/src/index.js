@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
 import BusRoutes from './store/BusRoutes';
+import MapProvider from './pages/OneBus'
 
 export const Context = createContext(null)
 
@@ -13,6 +14,7 @@ root.render(
 		bus: new BusRoutes(),
 	}}>
 		<App />
+
 	</Context.Provider>,
 );
 

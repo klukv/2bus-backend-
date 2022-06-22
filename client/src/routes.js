@@ -11,6 +11,16 @@ export const authRoutes = [
 	{
 		path: MAIN_WINDOW,
 		Component: MainWindow
+	},
+
+	{
+		path: BUS_ROUTE + '/:id',
+		Component: OneBus
+	},
+
+	{
+		path: CREATE_BUS,
+		Component: CreateBus
 	}
 
 ]
@@ -25,15 +35,6 @@ export const publicRoutes = [
 	{
 		path: LOGIN_ROUTES,
 		Component: Login
-	},
-
-	{
-		path: BUS_ROUTE + '/:id',
-		Component: OneBus
-	},
-
-	{
-		path: CREATE_BUS,
-		Component: CreateBus
 	}
+
 ]
