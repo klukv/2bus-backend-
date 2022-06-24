@@ -30,6 +30,8 @@ const Menu = observer(({ header, active, setActive }) => {
 		}
 	}
 
+	const destinationPoints = ['Студенческий городок ВПИ', 'Гостиница Брно', 'Политехнический институт', 'Строительный институт']
+
 
 	return (
 		<div className={active ? 'wrapper__menu active' : 'wrapper__menu'}>
@@ -53,7 +55,7 @@ const Menu = observer(({ header, active, setActive }) => {
 							<div className="wrapper__menu-routes">
 								{bus._buses.map(bus => {
 									if (studentCity.indexOf(bus.number) !== -1) {
-										return <ButtonComponent key={bus.id} bus={bus} />
+										return <ButtonComponent key={bus.id} bus={bus} destinationPoint={destinationPoints[0]} />
 									}
 								}
 								)}
@@ -64,7 +66,7 @@ const Menu = observer(({ header, active, setActive }) => {
 							<div className="wrapper__menu-routes">
 								{bus._buses.map(bus => {
 									if (hostel.indexOf(bus.number) !== -1) {
-										return <ButtonComponent key={bus.id} bus={bus} />
+										return <ButtonComponent key={bus.id} bus={bus} destinationPoint={destinationPoints[1]} />
 									}
 								}
 								)}
@@ -75,7 +77,7 @@ const Menu = observer(({ header, active, setActive }) => {
 							<div className="wrapper__menu-routes">
 								{bus._buses.map(bus => {
 									if (politech.indexOf(bus.number) !== -1) {
-										return <ButtonComponent key={bus.id} bus={bus} />
+										return <ButtonComponent key={bus.id} bus={bus} destinationPoint={destinationPoints[2]} />
 									}
 								}
 								)}
@@ -86,7 +88,7 @@ const Menu = observer(({ header, active, setActive }) => {
 							<div className="wrapper__menu-routes">
 								{bus._buses.map(bus => {
 									if (stroika.indexOf(bus.number) !== -1) {
-										return <ButtonComponent key={bus.id} bus={bus} />
+										return <ButtonComponent key={bus.id} bus={bus} destinationPoint={destinationPoints[3]} />
 									}
 								}
 								)}

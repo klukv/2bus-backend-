@@ -12,7 +12,6 @@ const CreateBus = () => {
 	const [rating, setRating] = useState('')
 	const [modelId, setModelId] = useState('')
 	const [driverId, setDriverId] = useState('')
-	const [img, setImg] = useState(null)
 
 	const [deleteNumber, setDeleteNumber] = useState('')
 
@@ -25,7 +24,6 @@ const CreateBus = () => {
 		formData.append('number', `${number}`)
 		formData.append('route', `${route}`)
 		formData.append('rating', `${rating}`)
-		formData.append('img', img)
 		formData.append('modelId', `${modelId}`)
 		formData.append('driverId', `${driverId}`)
 		createBus(formData).then(navigate(MAIN_WINDOW))
@@ -46,7 +44,6 @@ const CreateBus = () => {
 						<input type="text" name="" placeholder="Введите рейтинг данного маршрута" value={rating} onChange={e => setRating(e.target.value)} />
 						<input type="text" name="" placeholder="Введите id модели (от 1 до 5)" value={modelId} onChange={e => setModelId(e.target.value)} />
 						<input type="text" name="" placeholder="Введите id водителя (от 1 до 6)" value={driverId} onChange={e => setDriverId(e.target.value)} />
-						<input type="file" name="" placeholder="Добавьте изображение маршрута)" onChange={selectFile} />
 					</div>
 					<div className="admin__delete_block">
 						<button className="delete__btn btn" onClick={deleteBus}>Удалить автобус</button>

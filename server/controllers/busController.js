@@ -8,23 +8,10 @@ class busController {
 	async create(req, res, next) {
 		try {
 			let { number, route, rating, modelId, driverId } = req.body
-			const { img } = req.files
-			let filename = uuid.v4() + '.jpg'
-			img.mv(path.resolve(__dirname, '..', 'static', filename))
 
-			const bus = await Bus.create({ number, route, rating, modelId, driverId, img: filename })
 
-			// if (driverInfo) {
-			// 	driverInfo = JSON.parse(driverInfo)
-			// 	driverInfo.forEach(i =>
-			// 		Driver.create({
-			// 			name: i.name,
-			// 			firstname: i.firstname,
-			// 			phone: i.phone,
-			// 			busId: bus.id
-			// 		})
-			// 	)
-			// }
+			const bus = await Bus.create({ number, route, rating, modelId, driverId })
+
 			return res.json(bus)
 		} catch (e) {
 			next(ApiError.badRequest(e.message))
