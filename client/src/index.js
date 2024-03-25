@@ -1,11 +1,11 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import UserStore from './store/UserStore';
-import BusRoutes from './store/BusRoutes';
+import UserStore from './store/userStore';
+import BusRoutes from './store/busRoutes';
 import MapProvider from './pages/OneBus'
 
-export const Context = createContext(null)
+export const Context = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -15,9 +15,9 @@ const CreateBus = () => {
 
 	const [deleteNumber, setDeleteNumber] = useState('')
 
-	const selectFile = e => {
-		setImg(e.target.files[0])
-	}
+	// const selectFile = e => {
+	// 	setImg(e.target.files[0])
+	// }
 
 	const addBus = () => {
 		const formData = new FormData()

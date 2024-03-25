@@ -1,12 +1,10 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import '../scss/bus.scss'
 import { useParams } from 'react-router-dom'
 import { fetchBus, fetchOneBus, fetchOneDriver, fetchOneModel } from '../http/busAPI'
 import { Context } from '../index'
 import { observer } from 'mobx-react-lite'
-import { MapProvider, MapContext } from '../components/MapProvider'
-import MapGL from '../components/MapGL'
-// import { getInfoRoute } from '../http/gisAPI'
+import '../scss/bus.scss'
+
 
 
 const OneBus = observer(() => {
@@ -84,13 +82,6 @@ const OneBus = observer(() => {
 						</tbody>
 					</table>
 				</div>
-				<MapProvider>
-					<div className="bus__map">
-						<div style={{ width: '100%', height: '100%' }}>
-							<MapGL />
-						</div>
-					</div>
-				</MapProvider>
 			</div>
 		</section>
 	)

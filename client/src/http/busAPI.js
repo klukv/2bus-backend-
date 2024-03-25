@@ -7,7 +7,7 @@ export const createBus = async (bus) => {
 }
 
 export const fetchBus = async () => {
-	const { data } = await $host.get('api/bus')
+	const { data } = await $authHost.get('api/bus')
 	return data
 }
 
